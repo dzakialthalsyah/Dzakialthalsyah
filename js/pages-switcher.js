@@ -1,10 +1,3 @@
-/*
-* Template Name: PRO Card - Material Resume / CV / vCard Template
-* Author: lmpixels
-* Author URL: http://themeforest.net/user/lmpixels
-* Version: 1.0
-*/
-
 var PageTransitions = (function ($, options) {
 "use strict";
     var defaultStartPage = "home",
@@ -20,7 +13,7 @@ var PageTransitions = (function ($, options) {
             'animation'         : 'animationend'
         },
 
-        // animation end event name
+        // animation dan nama event
         animEndEventName = animEndEventNames[Modernizr.prefixed('animation')],
 
         // support css animations
@@ -28,20 +21,20 @@ var PageTransitions = (function ($, options) {
 
     function init(options) {
 
-        // Get all the .pt-page sections.
+        // Get semua .pt-page sections.
         $('.pt-page').each( function() {
             var $page = $(this);
             $page.data('originalClassList', $page.attr('class'));
         });
 
-        // Get all the .pt-wrapper div which is the parent for all pt-div
+        // Get semua .pt-wrapper div yang merupakan parent untuk semua pt-div
         sectionsContainer.each( function() {
             if (location.hash === "") {
                 $('section[data-id='+ pageStart +']').addClass('pt-page-current');
             }
         });
 
-        // Adding click event to main menu link
+        // Menambahkan click event ke main menu link
         $('.pt-trigger').on("click", function (e) {
             e.preventDefault();
             if (isAnimating) {
@@ -109,7 +102,7 @@ var PageTransitions = (function ($, options) {
     }
 
     function ajaxLoader() {
-        // Check for hash value in URL
+        // Check untuk hash value di URL
         var ajaxLoadedContent = $('#page-ajax-loaded');
 
         function showContent() {
@@ -138,12 +131,12 @@ var PageTransitions = (function ($, options) {
         });
 
         $(document)
-            .on("click",".site-main-menu, #ajax-page-close-button", function (e) { // Hide Ajax Loaded Page on Navigation cleck and Close button
+            .on("click",".site-main-menu, #ajax-page-close-button", function (e) { // Sembunyikan AJAX Loaded Page di Navigation cleck dan Close button
                 e.preventDefault();
                 hideContent();
                 location.hash = location.hash.split('/')[0];
             })
-            .on("click",".ajax-page-load", function () { // Show Ajax Loaded Page
+            .on("click",".ajax-page-load", function () { // Tampilkan Ajax Loaded Page
                 var hash = location.hash.split('/')[0] + '/' + $(this).attr('href').substr(0,$(this).attr('href').length-5);
                 location.hash = hash;
                 showContent();
@@ -154,7 +147,7 @@ var PageTransitions = (function ($, options) {
 
     function Animate($pageTrigger, gotoPage) {
 
-        // Checking for 'data-animation' attribute.
+        // Checking untuk 'data-animation' attribute.
         if (!($pageTrigger.attr('data-animation'))) {
             var animNumber = parseInt(Math.floor(Math.random() * 67) + 1);
             $pageTrigger.data('animation',animNumber);
@@ -163,7 +156,7 @@ var PageTransitions = (function ($, options) {
         var animation = $pageTrigger.data('animation').toString(),
             gotoPage, inClass, outClass, selectedAnimNumber;
 
-         // Check if the delimiter '-' is present then create an animation array list.
+         // Check jika delimiter nya '-' itu ada setelah itu membuat animation array list.
         if(animation.indexOf('-') != -1) {
             var randomAnimList = animation.split('-');
             selectedAnimNumber = parseInt(randomAnimList[(Math.floor(Math.random() * randomAnimList.length))]);
@@ -172,7 +165,7 @@ var PageTransitions = (function ($, options) {
             selectedAnimNumber = parseInt(animation);
         }
 
-        // Checking if the animation number is out of bound, max allowed value is 1 to 67.
+        // Checking jika animation number nya out of bound, max allowed value adalah 1 to 67.
         if (selectedAnimNumber > 67) {
             alert("Transition.js : Invalid 'data-animation' attribute configuration. Animation number should not be greater than 67");
             return false;
@@ -449,7 +442,7 @@ var PageTransitions = (function ($, options) {
                 break;
         }
 
-        // This will get the pt-trigger elements parent wrapper div
+        // Ini akan mengambil pt-trigger element parent wrapper div
         var $pageWrapper = sectionsContainer,
             currentPageId = $pageWrapper.data('current'), tempPageIndex,
             linkhref = $pageTrigger.attr('href').split("#"),
@@ -457,26 +450,26 @@ var PageTransitions = (function ($, options) {
             
             tempPageIndex = currentPageId;
 
-            // Current page to be removed.
+            //  Halaman saat ini untuk di removed.
             var $currentPage = $('section[data-id="' + currentPageId + '"]');
 
-            // NEXT PAGE
+            // PAGE SELANJUTNYA
             currentPageId = gotoPage;
 
-            // Check if the current page is same as the next page then do not do the animation
-            // else reset the 'isAnimatiing' flag
+            // Check jika page saat ini sama dengan page selanjutnya setelah itu jangan lakukan animation
+            // else reset 'isAnimatiing' flag
             if (tempPageIndex != currentPageId) {
                 isAnimating = true;
 
                 $pageWrapper.data('current', currentPageId);
 
-                // Next page to be animated.
+                // Page selanjutnya untuk di animated.
 
                 var $nextPage = $('section[data-id='+currentPageId+']').addClass('pt-page-current');
 
                 windowArea.scrollTop(0);
                 var subpagesHeight = windowArea.height();
-                $(".subpages").height(subpagesHeight + 50); //50 is the bottom margin value of the pt-page, in the main.css file
+                $(".subpages").height(subpagesHeight + 50); //50 adalah bottom margin value dari pt-page, didalam main.css file
 
                 $currentPage.addClass(outClass).on(animEndEventName, function() {
                     $currentPage.off(animEndEventName);
@@ -503,7 +496,7 @@ var PageTransitions = (function ($, options) {
             }
 
 
-        // Check if the animation is supported by browser and reset the pages.
+        // Check jika animation nya di supported oleh browser dan reset pages nya.
         if(!support) {
             onEndAnimation($currentPage, $nextPage);
         }
@@ -512,7 +505,7 @@ var PageTransitions = (function ($, options) {
 
     function onEndAnimation($pageWrapper, $nextPage, $currentPage) {
         var subpagesHeight = $nextPage.height();
-        $(".subpages").height(subpagesHeight + 50); //50 is the bottom margin value of the pt-page, in the main.css file
+        $(".subpages").height(subpagesHeight + 50); //50 adalah bottom margin value dari pt-page, didalam main.css file
         resetPage($nextPage, $currentPage);
     }
 
