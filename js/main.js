@@ -1,6 +1,6 @@
 (function($) {
 	"use strict";
-	// Subpages resize
+	// Subpage
 	function subpages_resize() {
 		var subpagesHeight = $('.pt-page-current').height();
 		$(".subpages").height(subpagesHeight + 50);
@@ -38,7 +38,6 @@
 	}
 	// /Portfolio subpage filters
 
-	// Contact form validator
 	$(function () {
 
 		$('#contact-form').validator();
@@ -67,24 +66,23 @@
 			}
 		});
 	});
-	// /Contact form validator
 
-	// Hide Mobile menu
+	//Sembunyikan Mobile menu
 	function mobileMenuHide() {
 		var windowWidth = $(window).width();
 		if (windowWidth < 1024) {
 			$('#site_header').addClass('mobile-menu-hide');
 		}
 	}
-	// /Hide Mobile menu
+	// /Sembunyikan Mobile menu
 
-	//On Window load & Resize
+	//DI Window load & Resize
 	$(window)
 	.on('load', function() { //Load
 	// Animation on Page Loading
 	$(".preloader").fadeOut("slow");
 
-	// initializing page transition.
+	// Untuk page transition.
 	var ptPage = $('.subpages');
 	if (ptPage[0]) {
 		PageTransitions.init({
@@ -109,9 +107,9 @@ setTimeout(function(){
 .scrollTop(0);
 
 
-// On Document Load
+// Di Document Load
 $(document).on('ready', function() {
-	// Initialize Portfolio grid
+	// Untuk Portfolio grid
 	var $portfolio_container = $("#portfolio-grid");
 
 	$portfolio_container.imagesLoaded(function () {
@@ -120,7 +118,7 @@ $(document).on('ready', function() {
 		}, 500);
 	});
 
-	// Portfolio hover effect init
+	// Portfolio hover efek init
 	$(' #portfolio_grid > figure ').each( function() { $(this).hoverdir(); } );
 
 	// Blog grid init
@@ -134,7 +132,7 @@ $(document).on('ready', function() {
 		$('#site_header').toggleClass('mobile-menu-hide');
 	});
 
-	// Mobile menu hide on main menu item click
+	// Mobile menu disembunyikan di main menu item click
 	$('.site-main-menu').on("click", "a", function (e) {
 		mobileMenuHide();
 	});
@@ -144,23 +142,22 @@ $(document).on('ready', function() {
 		$('#blog-sidebar').toggleClass('open');
 	});
 
-	// Testimonials Slider
 	$(".testimonials.owl-carousel").owlCarousel({
-		nav: true, // Show next/prev buttons.
-		items: 3, // The number of items you want to see on the screen.
-		loop: false, // Infinity loop. Duplicate last and first items to get loop illusion.
+		nav: true, // Menampilkan Button Selanjutnya
+		items: 3, // Berapa banyak item yang ingin kita lihat
+		loop: false, // Infinity loop
 		navText: false,
 		margin: 25,
 		responsive : {
-			// breakpoint from 0 up
+			// breakpoint dari 0 ke atas
 			0 : {
 				items: 1,
 			},
-			// breakpoint from 480 up
+			// breakpoint dari 480 ke atas
 			480 : {
 				items: 1,
 			},
-			// breakpoint from 768 up
+			// breakpoint dari 768 ke atas
 			768 : {
 				items: 2,
 			},
@@ -171,7 +168,7 @@ $(document).on('ready', function() {
 	});
 
 
-	// Text rotation
+	// Text rotasi
 	$('.text-rotation').owlCarousel({
 		loop: true,
 		dots: false,
@@ -191,11 +188,10 @@ $(document).on('ready', function() {
 		type: 'image',
 		removalDelay: 300,
 
-		// Class that is added to popup wrapper and background
-		// make it unique to apply your CSS animations just to this exact popup
+		// Class untuk menggabungkan wrapper dan background
 		mainClass: 'mfp-fade',
 		image: {
-			// options for image content type
+			// options untuk tipe konten image
 			titleSrc: 'title',
 			gallery: {
 				enabled: true
@@ -207,18 +203,15 @@ $(document).on('ready', function() {
 			'<div class="mfp-close"></div>'+
 			'<iframe class="mfp-iframe" frameborder="0" allowfullscreen></iframe>'+
 			'<div class="mfp-title mfp-bottom-iframe-title"></div>'+
-			'</div>', // HTML markup of popup, `mfp-close` will be replaced by the close button
+			'</div>', // HTML markup of popup, `mfp-close` akan digantikan dengan close button
 
 			patterns: {
 				youtube: {
-					index: 'youtube.com/', // String that detects type of video (in this case YouTube). Simply via url.indexOf(index).
+					index: 'youtube.com/',
 
-					id: null, // String that splits URL in a two parts, second part should be %id%
-					// Or null - full URL will be returned
-					// Or a function that should return %id%, for example:
-					// id: function(url) { return 'parsed id'; }
+					id: null,
 
-					src: '%id%?autoplay=1' // URL that will be set as a source for iframe.
+					src: '%id%?autoplay=1'
 				},
 				vimeo: {
 					index: 'vimeo.com/',
@@ -231,7 +224,7 @@ $(document).on('ready', function() {
 				}
 			},
 
-			srcAction: 'iframe_src', // Templating object key. First part defines CSS selector, second attribute. "iframe_src" means: find "iframe" and set attribute "src".
+			srcAction: 'iframe_src', // Templating object key. Part pertama mengidentifikasi CSS selector, attribute kedua. "iframe_src" berarti: find "iframe" dan set attribute "src".
 		},
 
 		callbacks: {
